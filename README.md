@@ -18,3 +18,8 @@ Steps:<br />
 
 
 Future Work:<br />
+
+1 byte = 8 bits<br />
+bytes32 = 256 bits<br />
+# of parameters = # of bits<br />
+300 million parameters = 1.2 million bytes??<br />
