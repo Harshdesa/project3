@@ -37,7 +37,8 @@ contract SignSgdOverBC {
 
     function sendLocalUpdateByWorker(bytes32 _update) public {
         require(msg.sender != serverNode, "Illegal operation performed by serverNode");
-        require(numberOfUpdates++ < numberOfWorkers, "Multiple operations performed by worker nodes");
+        require(updates[msg.sender].length == globalMomenta.length, "Multiple operations performed by worker node. Please wait till global momenta is sent out.");
+        require(numberOfUpdates++ < numberOfWorkers, "Worker node limit has reached. Cannot send local updates");
         updates[msg.sender].push(_update);
         if(globalMomenta.length == 0) {
           workerNodes.push(msg.sender);

@@ -18,7 +18,3 @@ Steps:<br />
 
 
 Future Work:<br />
-To add in sendLocalUpdateByWorker<br />
-
-require(updates[msg.sender][globalMomenta.length] == "0x0", "Multiple operations performed by worker node. Please wait till global momenta is sent out.");<br />
-require(numberOfUpdates++ < numberOfWorkers, "Not enough worker nodes have sent local updates");<br />
