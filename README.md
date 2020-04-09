@@ -23,3 +23,7 @@ Future Work:<br />
 bytes32 = 256 bits<br />
 # of parameters = # of bits<br />
 300 million parameters = 1.2 million bytes??<br />
+find out if using -1 / +1 / 0 or using -1 / +1<br />
+load test... try sending all parameters in an array of bytes32 and try to reach 300 million<br />
+figure out the number of contracts we need<br />
+make sure the number of calls to contracts are less<br />
