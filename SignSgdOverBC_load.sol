@@ -2,7 +2,10 @@ pragma solidity >=0.4.0 <0.7.0;
 
 contract SignSgdOverBC {
     uint public numberOfWorkers = 0;
-    
+
+    uint public debugNumber = 0;
+    mapping(uint =>  bytes32) public debugArray;
+
     //number of Updates 
     //uint public numberOfUpdates = 0;
     //number of Updates (Load)
@@ -12,6 +15,9 @@ contract SignSgdOverBC {
     bytes32[] public globalMomenta;
     //array for the global momenta (load test) over time
     bytes32[][] public globalMomenta_load;
+    mapping(uint => bytes32) public _globalMomenta;
+    bytes32[] public _globalMomentaretvalue;
+
 
     //updates per address
     //mapping(address => bytes32[]) public updates;
@@ -71,17 +77,28 @@ contract SignSgdOverBC {
         require(msg.sender == serverNode, "Illegal operation performed by workerNodes");
         require(numberOfUpdatesLoad == numberOfWorkers, "Every worker node has committed");
 
-        bytes32[] memory _globalMomenta;
+        //bytes32[] memory _globalMomenta;
+        //mapping(uint =>  bytes32) storage _globalMomenta = debugArray;
+
 
         for (uint indexOfLoadArray = 0; indexOfLoadArray < updates_load[workerNodes[0]][0].length ; indexOfLoadArray++) { //for each array
+          bytes32 zerovalue = 0x0000000000000000000000000000000000000000000000000000000000000000;
+          _globalMomenta[indexOfLoadArray] = zerovalue;
           for (uint i = 0; i < workerNodes.length; i++) { // for each worker
-            //_globalMomenta[indexOfLoadArray] = _globalMomenta[indexOfLoadArray] ^ updates_load[workerNodes[i]][globalMomenta_load.length][indexOfLoadArray];
+            //debugArray[debugNumber] = updates_load[workerNodes[i]][globalMomenta_load.length][indexOfLoadArray];
+            debugNumber++;
+
+            _globalMomenta[indexOfLoadArray] = _globalMomenta[indexOfLoadArray] ^ updates_load[workerNodes[i]][globalMomenta_load.length][indexOfLoadArray];
           }
+          _globalMomentaretvalue.push(_globalMomenta[indexOfLoadArray]);
         }
-         globalMomenta_load.push(_globalMomenta);
+         //globalMomenta_load.push(_globalMomenta);
+         //for (uint i = 0; i < updates_load[workerNodes[0]][0].length; i++) {
+         //      _globalMomentaretvalue.push(_globalMomenta[i]);
+         //}
          numberOfUpdatesLoad = 0;
          //emit SendUpdate(_globalMomenta);
-         return _globalMomenta;
+         return _globalMomentaretvalue;
     }
     
 /*
