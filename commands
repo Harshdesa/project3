@@ -1,0 +1,9 @@
+truffle migrate
+let accounts = await web3.eth.getAccounts()
+let instance = await SignSgdOverBC.deployed()
+instance.setNumberOfWorkers(3, {from: accounts[0]})
+instance.numberOfWorkers()
+instance.sendLocalUpdateByWorkerLoad(["0x0000000000000000000000000000000000000000000000000000000000000002","0x0000000000000000000000000000000000000000000000000000000000000002","0x0000000000000000000000000000000000000000000000000000000000000002"],{from: accounts[1]});
+instance.debugNumber();
+instance._globalMomentaretvalue(0);
+
