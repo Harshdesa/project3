@@ -204,7 +204,7 @@ func (t *SimpleAsset) Query(ctx contractapi.TransactionContextInterface, A strin
 
         fmt.Printf("Number of Parameters committed: %d\n", len(testA.Parameters))
         index := len(testA.Parameters)
-	fmt.Printf("Query Response Last Parameter:%d\n", testA.Parameters[index])
+	fmt.Printf("Query Response Last Parameter:%d\n", testA.Parameters[index-1])
         
 	return "success", nil
 }
